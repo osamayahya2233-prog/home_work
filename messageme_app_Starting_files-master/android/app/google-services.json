@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "138146009176",
+    "project_id": "messaging-app-c1bed",
+    "storage_bucket": "messaging-app-c1bed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138146009176:android:1945a10b932c00310eba2d",
+        "android_client_info": {
+          "package_name": "com.example.messaging_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAntfr_WBFBXnI71LGQosjnixayYve8J5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

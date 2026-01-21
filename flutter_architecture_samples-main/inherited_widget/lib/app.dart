@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:inherited_widget_sample/localization.dart';
+import 'package:inherited_widget_sample/screens/add_edit_screen.dart';
+import 'package:inherited_widget_sample/screens/home_screen.dart';
+import 'package:todos_app_core/todos_app_core.dart';
+
+class InheritedWidgetApp extends StatelessWidget {
+  const InheritedWidgetApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ArchSampleTheme.lightTheme,
+      darkTheme: ArchSampleTheme.darkTheme,
+      onGenerateTitle: (context) =>
+          InheritedWidgetLocalizations.of(context).appTitle,
+      localizationsDelegates: [
+        ArchSampleLocalizationsDelegate(),
+        InheritedWidgetLocalizationsDelegate(),
+      ],
+      routes: {
+        ArchSampleRoutes.home: (context) => HomeScreen(),
+        ArchSampleRoutes.addTodo: (context) => AddEditScreen(),
+      },
+    );
+  }
+}

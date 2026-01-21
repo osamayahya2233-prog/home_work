@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:simple_bloc_flutter_sample/dependency_injection.dart';
+import 'package:simple_bloc_flutter_sample/localization.dart';
+import 'package:simple_bloc_flutter_sample/screens/add_edit_screen.dart';
+import 'package:simple_bloc_flutter_sample/screens/home_screen.dart';
+import 'package:simple_bloc_flutter_sample/widgets/todos_bloc_provider.dart';
+import 'package:simple_blocs/simple_blocs.dart';
+import 'package:todos_app_core/todos_app_core.dart';
+import 'package:todos_repository_core/todos_repository_core.dart';
+
+class SimpleBlocApp extends StatelessWidget {
+  final TodosInteractor todosInteractor;
+  final UserRepository userRepository;
+
+  const SimpleBlocApp({
+    super.key,
+    required this.todosInteractor,
+    required this.userRepository,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Injector(
+      todosInteractor: todosInteractor,
+      userRepository: userRepository,
+      child: TodosBlocProvider(
+        bloc: TodosListBloc(todosInteractor),
+        child: MaterialApp(
+          onGenerateTitle: (context) =>
+              SimpleBlocLocalizations.of(context).appTitle,
+          theme: ArchSampleTheme.lightTheme,
+          darkTheme: ArchSampleTheme.darkTheme,
+          localizationsDelegates: [
+            ArchSampleLocalizationsDelegate(),
+            SimpleBlocLocalizationsDelegate(),
+          ],
+          routes: {
+            ArchSampleRoutes.home: (context) {
+              return HomeScreen();
+            },
+            ArchSampleRoutes.addTodo: (context) {
+              return AddEditScreen(
+                addTodo: TodosBlocProvider.of(context).addTodo,
+              );
+            },
+          },
+        ),
+      ),
+    );
+  }
+}
